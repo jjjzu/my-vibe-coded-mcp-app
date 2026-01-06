@@ -1,10 +1,20 @@
-import { CopilotBackend } from '@copilotkit/backend';
-import { copilotKit } from '@copilotkit/nextjs';
+import {
+  CopilotRuntime,
+  GoogleGenerativeAIAdapter,
+  copilotRuntimeNextJSAppRouterEndpoint,
+} from "@copilotkit/runtime";
+import { NextRequest } from "next/server";
 
-const backend = new CopilotBackend({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const runtime = new CopilotRuntime();
 
-export const { POST } = copilotKit({
-  backend,
-});
+export const POST = async (req: NextRequest) => {
+  const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
+    runtime,
+    serviceAdapter: new GoogleGenerativeAIAdapter({
+      model: "gemini-3-flash-preview",
+    }),
+    endpoint: req.nextUrl.pathname,
+  });
+
+  return handleRequest(req);
+};

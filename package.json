@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@copilotkit/react-core": "^1.10.2",
-    "@copilotkit/react-ui": "^1.10.2",
+    "@copilotkit/react-core": "^1.50.1",
+    "@copilotkit/react-ui": "^1.50.1",
+    "@copilotkit/runtime": "^1.50.1",
+    "@google/generative-ai": "^0.24.1",
     "lucide-react": "^0.540.0",
     "next": "15.4.7",
     "react": "19.1.0",
